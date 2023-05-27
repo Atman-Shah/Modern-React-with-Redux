@@ -1,15 +1,7 @@
-function ProfileCard({ title, handle }) {
-  // This is the 3rd method ^
-
-  // 1st method
-  // const title = props.title;
-  // const handle = props.handle;
-
-  // 2nd method
-  // const { title, handle } = props;
-
+function ProfileCard({ title, handle, image }) {
   return (
     <div>
+      <img alt="Personal Digital Assistants(pdas) Logos" src={image} />
       <div>Title is {title}</div>
       <div>Handle is {handle}</div>
     </div>
