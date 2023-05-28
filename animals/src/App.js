@@ -1,32 +1,16 @@
+import { useState } from "react";
+
 function App() {
-  // Method 1
-  // const handleClick = () => {
-  //   console.log("Button was clicked!");
-  // };
+  const [count, setCount] = useState(0);
+
+  const handleClick = () => {
+    setCount(count + 1);
+  };
 
   return (
     <div>
-      {/* Method 1   */}
-      {/* <button onClick={handleClick}>Add Animal</button> */}
-
-      {/* Method 2 */}
-      {/* <button onClick={function() {
-        console.log("Button was clicked!")
-      }}>Add Animal</button> */}
-
-      {/* Method 3 */}
-      {/* <button
-        onClick={() => {
-          console.log("Button was clicked!");
-        }}
-      >
-        Add Animal
-      </button> */}
-
-      {/* Method 4 */}
-      <button onClick={() => console.log("Button was clicked!")}>
-        Add Animal
-      </button>
+      <button onClick={handleClick}>Add Animal</button>
+      <div>Number of animals: {count}</div>
     </div>
   );
 }
