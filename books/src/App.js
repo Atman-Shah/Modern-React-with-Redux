@@ -1,7 +1,8 @@
 import { useState } from "react";
+import BookCreate from "./components/BookCreate";
 
 function App() {
-  // *****************************************************************************
+  // ******************************************************************************
   // Whenever we update the state we're going to re-render the component the state
   // is defined in and all of that component's children.
   // ******************************************************************************
@@ -9,11 +10,26 @@ function App() {
   // components that'll use that state and find the lowest common parent
   // ******************************************************************************
   // So here "books" peice of state will be used by BookShow, BookEdit, BookList,
-  // BookShow & BookCreate components so we'll define "books" state in App
+  // & BookCreate components so we'll define "books" state in App
   // component which is the lowest common parent of all these components.
   const [books, setBooks] = useState([]);
 
-  return <div>App</div>;
+  // ******************************************************************************
+  // We're going to create 3 functions createBook, editBook, deleteBook in the
+  // App component so that they can modify the "books" piece of state.
+  // We're going to take these functions and pass them as props down in the
+  // components like BookCreate etc.
+  // ******************************************************************************
+
+  const createBook = (title) => {
+    console.log("need to add book with: ", title);
+  };
+
+  return (
+    <div>
+      <BookCreate onCreate={createBook} />
+    </div>
+  );
 }
 
 export default App;
