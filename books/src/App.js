@@ -22,11 +22,15 @@ function App() {
   // ******************************************************************************
 
   const createBook = (title) => {
-    console.log("need to add book with: ", title);
+    // BAD CODE! it makes changes to existing array doesn't create a new one
+    // books.push({ id: 123, title: title });
+
+    setBooks(books);
   };
 
   return (
     <div>
+      {books.length}
       <BookCreate onCreate={createBook} />
     </div>
   );
