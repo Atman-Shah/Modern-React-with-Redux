@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import BookCreate from "./components/BookCreate";
 import BookList from "./components/BookList";
 import axios from "axios";
@@ -16,6 +16,19 @@ function App() {
   // component which is the lowest common parent of all these components.
   const [books, setBooks] = useState([]);
 
+  const fetchBooks = async () => {
+    const response = await axios.get("http://127.0.0.1:3001/books");
+
+    setBooks(response.data);
+  };
+
+  useEffect(() => {
+    fetchBooks();
+  }, []);
+
+  // Don't do this (infinite loop)
+  // fetchBooks();
+
   // ******************************************************************************
   // We're going to create 3 functions createBook, editBook, deleteBook in the
   // App component so that they can modify the "books" piece of state.
@@ -23,7 +36,7 @@ function App() {
   // components like BookCreate etc.
   // ******************************************************************************
   const createBook = async (title) => {
-    const response = await axios.post("http://localhost:3001/books", {
+    const response = await axios.post("http://127.0.0.1:3001/books", {
       title,
     });
 
