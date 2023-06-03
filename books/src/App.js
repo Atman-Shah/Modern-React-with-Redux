@@ -1,6 +1,7 @@
 import { useState } from "react";
 import BookCreate from "./components/BookCreate";
 import BookList from "./components/BookList";
+import axios from "axios";
 
 function App() {
   // ******************************************************************************
@@ -21,13 +22,14 @@ function App() {
   // We're going to take these functions and pass them as props down in the
   // components like BookCreate etc.
   // ******************************************************************************
-  const createBook = (title) => {
+  const createBook = async (title) => {
+    const response = await axios.post("http://localhost:3001/books", {
+      title,
+    });
+
     // BAD CODE! it makes changes to existing array doesn't create a new one
     // books.push({ id: 123, title: title });
-    const updatedBooks = [
-      ...books,
-      { id: Math.round(Math.random() * 9999), title },
-    ];
+    const updatedBooks = [...books, response.data];
 
     setBooks(updatedBooks);
   };
