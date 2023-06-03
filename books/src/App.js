@@ -24,8 +24,9 @@ function App() {
   const createBook = (title) => {
     // BAD CODE! it makes changes to existing array doesn't create a new one
     // books.push({ id: 123, title: title });
+    const updatedBooks = [...books, { id: 123, title }];
 
-    setBooks(books);
+    setBooks(updatedBooks);
   };
 
   return (
