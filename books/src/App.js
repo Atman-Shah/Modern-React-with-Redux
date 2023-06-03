@@ -24,7 +24,10 @@ function App() {
   const createBook = (title) => {
     // BAD CODE! it makes changes to existing array doesn't create a new one
     // books.push({ id: 123, title: title });
-    const updatedBooks = [...books, { id: 123, title }];
+    const updatedBooks = [
+      ...books,
+      { id: Math.round(Math.random() * 9999), title },
+    ];
 
     setBooks(updatedBooks);
   };
