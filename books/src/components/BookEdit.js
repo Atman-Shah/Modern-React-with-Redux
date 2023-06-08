@@ -1,16 +1,24 @@
 import { useState } from "react";
+import { editBookByIDAtom, showEditAtom } from "../context/state";
+import { editBookbyId } from "../helpers/editBook";
+import { useAtom } from "jotai";
 
-function BookEdit({ book, onSubmit }) {
+
+function BookEdit({ book }) {
   const [title, setTitle] = useState(book.title);
+  const [, setShowEdit] = useAtom(showEditAtom);
+  const [, editBook] = useAtom(editBookByIDAtom);
+  
 
   const handleChange = (event) => {
     setTitle(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-
-    onSubmit(book.id, title);
+    const editedBook = await editBookbyId(book.id, title);
+    editBook(editedBook);
+    setShowEdit("");
   };
 
   return (

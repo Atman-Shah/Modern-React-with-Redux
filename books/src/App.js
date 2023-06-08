@@ -1,7 +1,5 @@
-import { useState, useEffect } from "react";
 import BookCreate from "./components/BookCreate";
 import BookList from "./components/BookList";
-import axios from "axios";
 
 function App() {
   // ******************************************************************************
@@ -14,17 +12,14 @@ function App() {
   // So here "books" peice of state will be used by BookShow, BookEdit, BookList,
   // & BookCreate components so we'll define "books" state in App
   // component which is the lowest common parent of all these components.
-  const [books, setBooks] = useState([]);
+  // ******************************************************************************
+  // const [books, setBooks] = useState([]);
 
-  const fetchBooks = async () => {
-    const response = await axios.get("http://localhost:3001/books");
+  // const fetchBooks = async () => {
+  //   const response = await axios.get("http://localhost:3001/books");
 
-    setBooks(response.data);
-  };
-
-  useEffect(() => {
-    fetchBooks();
-  }, []);
+  //   setBooks(response.data);
+  // };
 
   // Don't do this (infinite loop)
   // fetchBooks();
@@ -35,49 +30,49 @@ function App() {
   // We're going to take these functions and pass them as props down in the
   // components like BookCreate etc.
   // ******************************************************************************
-  const createBook = async (title) => {
-    const response = await axios.post("http://localhost:3001/books", {
-      title,
-    });
+  // const createBook = async (title) => {
+  //   const response = await axios.post("http://localhost:3001/books", {
+  //     title,
+  //   });
 
-    // BAD CODE! it makes changes to existing array doesn't create a new one
-    // books.push({ id: 123, title: title });
-    const updatedBooks = [...books, response.data];
+  //   // BAD CODE! it makes changes to existing array doesn't create a new one
+  //   // books.push({ id: 123, title: title });
+  //   const updatedBooks = [...books, response.data];
 
-    setBooks(updatedBooks);
-  };
+  //   setBooks(updatedBooks);
+  // };
 
-  const deleteBookById = async (id) => {
-    await axios.delete(`http://localhost:3001/books/${id}`);
+  // const deleteBookById = async (id) => {
+  //   await axios.delete(`http://localhost:3001/books/${id}`);
 
-    const updatedBooks = books.filter((book) => {
-      return book.id !== id;
-    });
+  //   const updatedBooks = books.filter((book) => {
+  //     return book.id !== id;
+  //   });
 
-    setBooks(updatedBooks);
-  };
+  //   setBooks(updatedBooks);
+  // };
 
-  const editBookById = async (id, newTitle) => {
-    const response = await axios.put(`http://localhost:3001/books/${id}`, {
-      title: newTitle,
-    });
+  // const editBookById = async (id, newTitle) => {
+  //   const response = await axios.put(`http://localhost:3001/books/${id}`, {
+  //     title: newTitle,
+  //   });
 
-    const updatedBooks = books.map((book) => {
-      if (book.id === id) {
-        return { ...book, ...response.data };
-      }
+  //   const updatedBooks = books.map((book) => {
+  //     if (book.id === id) {
+  //       return { ...book, ...response.data };
+  //     }
 
-      return book;
-    });
+  //     return book;
+  //   });
 
-    setBooks(updatedBooks);
-  };
+  //   setBooks(updatedBooks);
+  // };
 
   return (
     <div className="app">
       <h1>Reading List</h1>
-      <BookList books={books} onDelete={deleteBookById} onEdit={editBookById} />
-      <BookCreate onCreate={createBook} />
+      <BookList />
+      <BookCreate />
     </div>
   );
 }

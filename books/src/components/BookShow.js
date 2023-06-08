@@ -1,25 +1,30 @@
-import { useState } from "react";
 import BookEdit from "./BookEdit";
+import { useAtom } from "jotai";
+import { showEditAtom } from "../context/state";
+import { deleteBookByIDAtom } from "../context/state";
+import { deleteBookById } from "../helpers/deleteBook";
 
-function BookShow({ book, onDelete, onEdit }) {
-  const [showEdit, setShowEdit] = useState(false);
 
-  const handleDeleteClick = () => {
-    onDelete(book.id);
+function BookShow({ book }) {
+  const [showEdit, setShowEdit] = useAtom(showEditAtom);
+  const [, deleteBook] = useAtom(deleteBookByIDAtom);
+
+  const handleDeleteClick = async () => {
+    await deleteBookById(book.id);
+    deleteBook(book.id);
   };
 
   const handleEditClick = () => {
-    setShowEdit(!showEdit);
-  };
-
-  const handleSubmit = (id, newTitle) => {
-    setShowEdit(false);
-    onEdit(id, newTitle);
+    if (showEdit === book.id) {
+      setShowEdit("");
+    } else {
+      setShowEdit(book.id);
+    }
   };
 
   let content = <h3>{book.title}</h3>;
-  if (showEdit) {
-    content = <BookEdit book={book} onSubmit={handleSubmit} />;
+  if (showEdit === book.id) {
+    content = <BookEdit book={book} />;
   }
 
   return (

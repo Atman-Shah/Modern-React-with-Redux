@@ -1,7 +1,11 @@
 import { useState } from "react";
+import { createBook } from "../helpers/createBook";
+import { useAtom } from "jotai";
+import { addBookAtom } from "../context/state";
 
-function BookCreate({ onCreate }) {
+function BookCreate() {
   const [title, setTitle] = useState("");
+  const [, addBook] = useAtom(addBookAtom);
 
   // ****************************************************************************
   // This is going to keep track whenever user changes the text input in any way.
@@ -19,9 +23,10 @@ function BookCreate({ onCreate }) {
   // Whenever user submits the form we want to call onCreate and pass in the
   // title that we have been maintaining.
   // ************************************************************************
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    onCreate(title);
+    const book = await createBook(title);
+    addBook(book);
     // ***********************************************
     // To empty out the input element after submission
     // ***********************************************
