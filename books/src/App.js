@@ -1,5 +1,7 @@
+import { useEffect } from "react";
 import BookCreate from "./components/BookCreate";
 import BookList from "./components/BookList";
+import { fetchBooks } from "./helpers/fetchBook";
 
 function App() {
   // ******************************************************************************
@@ -67,6 +69,10 @@ function App() {
 
   //   setBooks(updatedBooks);
   // };
+
+  useEffect(() => {
+    fetchBooks();
+  }, []);
 
   return (
     <div className="app">
