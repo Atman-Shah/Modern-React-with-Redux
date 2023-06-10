@@ -17,6 +17,13 @@ function Button({
         'border-red-500 bg-red-500 text-white': danger,
         'border-yellow-400 bg-yellow-400 text-white': warning,
         'border-green-500 bg-green-500 text-white': success,
+        'rounded-full': rounded,
+        'bg-white': outlined,
+        'text-blue-500': primary && outlined,
+        'text-gray-900': secondary && outlined,
+        'text-red-500': danger && outlined,
+        'text-yellow-400': warning && outlined,
+        'text-green-500': success && outlined,
     });
 
     return <button className={classes}>{children}</button>
