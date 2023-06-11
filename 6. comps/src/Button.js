@@ -11,19 +11,19 @@ function Button({
     rounded,
  }){
 
-    const classes = className('px-3 py-1.5 border', {
-        'border-blue-600 bg-blue-500 text-white': primary,
-        'border-gray-900 bg-gray-900 text-white': secondary,
-        'border-red-500 bg-red-500 text-white': danger,
-        'border-yellow-400 bg-yellow-400 text-white': warning,
-        'border-green-500 bg-green-500 text-white': success,
+    const classes = className('flex itemms-center px-3 py-1.5 border', {
+        'border-blue-600 bg-blue-500 text-white': primary && !outlined,
+        'border-gray-900 bg-gray-900 text-white': secondary && !outlined,
+        'border-red-500 bg-red-500 text-white': danger && !outlined,
+        'border-yellow-400 bg-yellow-400 text-white': warning && !outlined,
+        'border-green-500 bg-green-500 text-white': success && !outlined,
         'rounded-full': rounded,
         'bg-white': outlined,
-        'text-blue-500': primary && outlined,
-        'text-gray-900': secondary && outlined,
-        'text-red-500': danger && outlined,
-        'text-yellow-400': warning && outlined,
-        'text-green-500': success && outlined,
+        'border-blue-600 text-blue-500': primary && outlined,
+        'border-gray-900 text-gray-900': secondary && outlined,
+        'border-red-500 text-red-500': danger && outlined,
+        'border-yellow-400 text-yellow-400': warning && outlined,
+        'border-green-500 text-green-500': success && outlined,
     });
 
     return <button className={classes}>{children}</button>
