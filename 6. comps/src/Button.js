@@ -9,6 +9,8 @@ function Button({
     success,
     outlined,
     rounded,
+    ...rest // This means take the remaining properties out of the props obejct
+            // besides the ones we've listed here.
  }){
 
     const classes = className('flex itemms-center px-3 py-1.5 border', {
@@ -26,7 +28,9 @@ function Button({
         'border-green-500 text-green-500': success && outlined,
     });
 
-    return <button className={classes}>{children}</button>
+    // {...rest} means take all the individual properties and values out of 
+    // this object and just assign all of them as props to the button element. 
+    return <button {...rest} className={classes}>{children}</button>
 }
 
 Button.propTypes = {
