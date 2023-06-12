@@ -13,7 +13,7 @@ function Button({
             // besides the ones we've listed here.
  }){
 
-    const classes = className('flex itemms-center px-3 py-1.5 border', {
+    const classes = className(rest.className, 'flex itemms-center px-3 py-1.5 border', {
         'border-blue-600 bg-blue-500 text-white': primary && !outlined,
         'border-gray-900 bg-gray-900 text-white': secondary && !outlined,
         'border-red-500 bg-red-500 text-white': danger && !outlined,
