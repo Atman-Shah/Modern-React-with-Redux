@@ -27,6 +27,18 @@ function Accordion({ items }) {
         }else {
             setExpandedIndex(nextIndex);
         }
+
+        // console.log("STALE version of expanded index", expandedIndex);
+
+        // Optional
+        // setExpandedIndex((currentExpandedIndex) => {
+        //     console.log("UP TO DATE version of expanded index", expandedIndex);
+        //     if(currentExpandedIndex === nextIndex){
+        //         return -1;
+        //     }else{
+        //         return nextIndex;
+        //     }
+        // });
     };
 
     const renderedItems = items.map((item, index) => {
