@@ -2,13 +2,31 @@ import { useState } from "react";
 import { GoChevronDown, GoChevronLeft } from "react-icons/go";
 
 function Accordion({ items }) { 
-    const [expandedIndex, setExpandedIndex] = useState(0);
+    // **************************************************************************
+    // useState(-1), No item is ever going to start off as marked with isExpanded 
+    // True. So if I save this, everything is going to be closed until I 
+    // eventually click on something.
+    // **************************************************************************
+    const [expandedIndex, setExpandedIndex] = useState(-1);
 
+    // *************************************************************************
     // With all this extra work, we can now define an event handler outside of 
     // the mapping function, which is good because we're not going to clutter up 
     // the mapping function and make it hard to read.
+    // *************************************************************************
+
     const handleClick = (nextIndex) => {
-        setExpandedIndex(nextIndex);
+        // *************************************************************************
+        // Take a look at the value of next index and compare it to expanded index.
+        // If they are identical, the user must have just clicked on the element 
+        // that is already open and so we could update seExpandedIndex to go back 
+        // to being negative one again, else set it to the value of newIndex. 
+        // *************************************************************************
+        if(expandedIndex === nextIndex){
+            setExpandedIndex(-1);        
+        }else {
+            setExpandedIndex(nextIndex);
+        }
     };
 
     const renderedItems = items.map((item, index) => {
