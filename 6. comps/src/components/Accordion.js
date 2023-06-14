@@ -14,7 +14,7 @@ function Accordion({ items }) {
     const renderedItems = items.map((item, index) => {
         const isExpanded = index === expandedIndex;
 
-        const icon = <span>
+        const icon = <span className="text-2xl">
             {isExpanded ? <GoChevronDown /> : <GoChevronLeft />}
         </span>
 
@@ -25,22 +25,22 @@ function Accordion({ items }) {
                 pass  in some information that was present only inside of the 
                 mapping function, i.e. only inside the mapping function we 
                 can access this index variable. */}
-                <div onClick={() => handleClick(index)}>
-                    {icon}
+                <div className="flex justify-between p-3 bg-gray-50 border-b items-center cursor-pointer" onClick={() => handleClick(index)}>
                     {item.label}
+                    {icon}
                 </div>
 
                 {/* || gives back the 1st value that is truthy.
                 && gives back the 1st faulsy value or last truthy value */}
                 {/* So in the below case it'll  eturn content only when isExpanded is true */}
-                {isExpanded && <div>
+                {isExpanded && <div className="border-b p-5 ">
                     {item.content}
                     </div>}
             </div>
         );
     });
 
-    return <div>{renderedItems}</div>
+    return <div className="border-x border-t rounded ">{renderedItems}</div>
 }
 
 export default Accordion;
