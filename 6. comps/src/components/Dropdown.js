@@ -18,13 +18,13 @@ function Dropdown({ options, selection, onSelect }) {
         </div>
     });
 
-    let content = 'Select...';
-    if(selection) {
-        content = selection.label;
-    }
-
     return <div>
-        <div onClick={handleClick}>{content}</div>
+        <div onClick={handleClick}>
+            {/* if selection is null, then that's going to evaluate to be undefined
+            And we'll get just the text "select". Otherwise, if selection is defined,
+            if it is an object, then we're going to print out it's label property. */}
+            {selection?.label || "Select..."}
+        </div>
         {isOpen && <div>{renderedOptions}</div>}
     </div>
 };
