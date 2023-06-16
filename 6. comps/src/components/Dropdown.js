@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Dropdown({ options, selection, onSelect }) {
+function Dropdown({ options, value, onChange }) {
     const[isOpen, setIsOpen] = useState(false);
 
     const handleClick = () => {
@@ -9,7 +9,7 @@ function Dropdown({ options, selection, onSelect }) {
 
     const handleOptionClick = (option) => {
         setIsOpen(false);
-        onSelect(option);
+        onChange(option);
     };
 
     const renderedOptions = options.map((option) => {
@@ -20,10 +20,10 @@ function Dropdown({ options, selection, onSelect }) {
 
     return <div>
         <div onClick={handleClick}>
-            {/* if selection is null, then that's going to evaluate to be undefined
-            And we'll get just the text "select". Otherwise, if selection is defined,
+            {/* if value is null, then that's going to evaluate to be undefined
+            And we'll get just the text "select". Otherwise, if value is defined,
             if it is an object, then we're going to print out it's label property. */}
-            {selection?.label || "Select..."}
+            {value?.label || "Select..."}
         </div>
         {isOpen && <div>{renderedOptions}</div>}
     </div>
