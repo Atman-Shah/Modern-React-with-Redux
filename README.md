@@ -1,1 +1,1 @@
-This reposatory is for practice while doing this Udemy course - https://www.udemy.com/course/react-redux/
+This reposatory is for practice while doing this course - https://www.udemy.com/course/react-redux/
