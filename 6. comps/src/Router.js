@@ -2,27 +2,33 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AccordionPage from "./pages/AccordionPage";
 import ButtonPage from "./pages/ButtonPage";
 import DropdownPage from "./pages/DropdownPage";
-import HomePage from "./pages/HomePage";
-
+import App from "./App";
 
 function Router() {
-
   const router = createBrowserRouter([
     {
-      path: "/",
-      element: <HomePage />,
-    },
-    {
       path: "/accordion",
-      element: <AccordionPage />,
+      element: (
+        <App>
+          <AccordionPage />
+        </App>
+      ),
     },
     {
-      path: "/button",
-      element: <ButtonPage />,
+      path: "/buttons",
+      element: (
+        <App>
+          <ButtonPage />
+        </App>
+      ),
     },
     {
-      path: "/dropdown",
-      element: <DropdownPage />,
+      path: "/",
+      element: (
+        <App>
+          <DropdownPage />
+        </App>
+      ),
     },
   ]);
 

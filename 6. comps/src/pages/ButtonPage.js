@@ -8,7 +8,7 @@ function ButtonPage() {
 
     return <div>
         <div>
-            <Button primary rounded className="mb-5" onCLick={handleClick}>
+            <Button primary rounded className="mb-5" onClick={handleClick}>
                 <GoBell /> 
                 Click me!
                 </Button>
