@@ -4,6 +4,7 @@ import ButtonPage from "./pages/ButtonPage";
 import DropdownPage from "./pages/DropdownPage";
 import App from "./App";
 import ModalPage from "./pages/ModalPage";
+import TablePage from "./pages/TablePage";
 
 function Router() {
   const router = createBrowserRouter([
@@ -36,6 +37,14 @@ function Router() {
       element: (
         <App>
           <ModalPage />
+        </App>
+      ),
+    },
+    {
+      path: "/table",
+      element: (
+        <App>
+          <TablePage />
         </App>
       ),
     },
