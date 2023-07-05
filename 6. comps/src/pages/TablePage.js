@@ -9,7 +9,9 @@ function TablePage() {
     ];
 
     const config = [
-        { lable: "Fruit" }, { lable: "Color" }, { lable: "Score" }
+        { lable: "Fruit", render: (fruit) => fruit.name, }, 
+        { lable: "Color", render: (fruit) => fruit.color, }, 
+        { lable: "Score", render: (fruit) => fruit.score, }
     ];
 
     return (
