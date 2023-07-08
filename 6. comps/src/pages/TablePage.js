@@ -9,13 +9,13 @@ function TablePage() {
   ];
 
   const config = [
-    { lable: "Fruit", render: (fruit) => fruit.name, sortValue: (fruit) => fruit.name },
+    { label: "Fruit", render: (fruit) => fruit.name, sortValue: (fruit) => fruit.name },
     {
-      lable: "Color",
+      label: "Color",
       render: (fruit) => <div className={`p-3 m-2 ${fruit.color}`} />,
     },
     {
-      lable: "Score",
+      label: "Score",
       render: (fruit) => fruit.score,
       sortValue: (fruit) => fruit.score,
     },
