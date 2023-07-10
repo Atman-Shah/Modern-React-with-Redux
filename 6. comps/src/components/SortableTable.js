@@ -8,6 +8,12 @@ function SortableTable(props) {
   const [sortBy, setSortBy] = useState(null);
 
   const handleClick = (label) => {
+    if (sortBy && label !== sortBy) {
+      setSortOrder("asc");
+      setSortBy(label);
+      return;
+    }
+
     if (sortOrder === null) {
       setSortOrder("asc");
       setSortBy(label);
@@ -28,7 +34,10 @@ function SortableTable(props) {
     return {
       ...column,
       header: () => (
-        <th className="cursor-pointer hover:bg-gray-100" onClick={() => handleClick(column.label)}>
+        <th
+          className="cursor-pointer hover:bg-gray-100"
+          onClick={() => handleClick(column.label)}
+        >
           <div className="flex items-center">
             {getIcons(column.label, sortBy, sortOrder)}
             {column.label}
@@ -55,12 +64,7 @@ function SortableTable(props) {
     });
   }
 
-  return (
-    <div>
-      {sortOrder} - {sortBy}
-      <Table {...props} data={sortedData} config={updatedConfig} />
-    </div>
-  );
+  return <Table {...props} data={sortedData} config={updatedConfig} />;
 }
 
 function getIcons(label, sortBy, sortOrder) {
