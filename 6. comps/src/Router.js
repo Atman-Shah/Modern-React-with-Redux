@@ -5,6 +5,7 @@ import DropdownPage from "./pages/DropdownPage";
 import App from "./App";
 import ModalPage from "./pages/ModalPage";
 import TablePage from "./pages/TablePage";
+import CounterPage from "./pages/CounterPage";
 
 function Router() {
   const router = createBrowserRouter([
@@ -45,6 +46,14 @@ function Router() {
       element: (
         <App>
           <TablePage />
+        </App>
+      ),
+    },
+    {
+      path: "/counter",
+      element: (
+        <App>
+          <CounterPage initialCount={10} />
         </App>
       ),
     },
