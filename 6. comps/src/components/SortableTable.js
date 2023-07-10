@@ -2,7 +2,7 @@ import Table from "./Table";
 import { useState } from "react";
 
 function SortableTable(props) {
-    const { config } = props;
+    const { config, data } = props;
     const [sortOrder, setSortOrder] = useState(null);
     const [sortBy, setSortBy] = useState(null);
 
@@ -30,9 +30,27 @@ function SortableTable(props) {
         };
      });
 
+     let sortedData = data;
+     if(sortOrder && sortBy) {
+        const { sortValue } = config.find((column) => column.label === sortBy);
+        sortedData = [...data].sort((a, b) => {
+            const valueA = sortValue(a);
+            const valueB = sortValue(b);
+
+            const reverseOrder = sortOrder === "deascsc" ? 1 : -1;
+
+            if(typeof valueA === "string") {
+                return reverseOrder * valueA.localeCompare(valueB);
+            } else {
+                return reverseOrder * (valueA - valueB);
+            }
+
+        });
+     }
+
   return (<div>
     {sortOrder} - {sortBy}
-    <Table {...props} config={updatedConfig} />
+    <Table {...props} data={sortedData} config={updatedConfig} />
     </div>);
 }
 
