@@ -47,6 +47,9 @@ function SortableTable(props) {
     };
   });
 
+  // Only sort data if sortOrder && sortBy are not null	
+  // Make a copy of the 'data' prop	
+  // Find the correct sortValue function and use it for sorting
   let sortedData = data;
   if (sortOrder && sortBy) {
     const { sortValue } = config.find((column) => column.label === sortBy);
@@ -54,7 +57,7 @@ function SortableTable(props) {
       const valueA = sortValue(a);
       const valueB = sortValue(b);
 
-      const reverseOrder = sortOrder === "deascsc" ? 1 : -1;
+      const reverseOrder = sortOrder === "asc" ? 1 : -1;
 
       if (typeof valueA === "string") {
         return reverseOrder * valueA.localeCompare(valueB);
